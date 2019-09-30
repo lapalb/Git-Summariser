@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Git Info</title>
+  <meta name="description" content="Get Information about git user">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js"></script>
+</head>
+<body ng-app="myApp"  ng-controller="myCtrl">
+<div class="container">
+  <div class="jumbotron">
+      <input type="text" class="form-control" ng-model="uname" placeholder="Enter Git Username"/><br>
+    <button type="submit" class="btn btn-primary" ng-click="myFun()">Submit</button>
+  </div>
+  <div class="jumbotron" ng-if="isClicked">
+    <table class="table table-bordered">
+      <tr>
+        <td>UserName</td>
+        <td>{{myWelcome.login}}</td>
+      </tr>
+
+      <tr>
+        <td>URL</td>
+        <td>{{myWelcome.url}}</td>
+      </tr>
+
+      <tr>
+        <td>Avatar</td>
+        <td>
+          <img ng-src="{{myWelcome.avatar_url}}" alt="{{myWelcome.avatar_url}}" style="width: 50px; height: 50px">
+          </td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td>{{myWelcome.location}}</td>
+      </tr>
+
+
+      <tr>
+        <td>Number of Repo</td>
+        <td>{{myWelcome.public_repos}}</td>
+      </tr>
+
+      <tr>
+        <td>Number of Gist</td>
+        <td>{{myWelcome.public_gists}}</td>
+      </tr>
+
+      <tr>
+        <td>Number of Follower</td>
+        <td>{{myWelcome.followers}}</td>
+      </tr>
+
+      <tr>
+        <td>Number of Following</td>
+        <td>{{myWelcome.following}}</td>
+      </tr>
+
+      <tr>
+        <td>About</td>
+        <td>{{myWelcome.bio}}</td>
+      </tr>
+      <tr>
+        <td>Follower</td>
+        <td>
+          <ol >
+                 <li ng-repeat="x in myfo">{{x.login}}</li>
+        </ol>
+        </td>
+
+      </tr>
+
+      <tr>
+        <td>Following</td>
+        <td>
+          <ol >
+            <li ng-repeat="x in myfol">{{x.login}}</li>
+          </ol>
+        </td>
+
+      </tr>
+
+    </table>
+
+  </div>
+</div>
+</body>
+</html>
