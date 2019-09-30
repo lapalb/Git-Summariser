@@ -6,7 +6,7 @@ This tool lets you to have an overview of your Github Profile.
 Angular JS
 
 ### Live demo
- [lapalb.github.io](https://lapalb.github.io/Git-Summariser/)
+ [lapalb.github.io](https://lapalb.github.io/Git-Summariser/app)
  
 ### Running the project locally
 `npm install`
