@@ -1,123 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Air Cargo Service</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-    <script>
-            function costcalculation(){
-                var w = parseInt(document.getElementById('kilogramval').value)
-                var type= $("input[name='serviceType']:checked").val();
-                var loc = document.getElementById('loc').value
-
-                if(type==='normal'){
-                   if(w<15){d=125}
-                   else if (w<25 ){d=175}
-                   else {d=200}
-                }
-
-
-                if(type==='express'){
-                    if(w<15){d=175}
-                   else if (w<25 ){d=225}
-                   else {d=250}                
-                }
-
-
-                if(type==='platinum'){
-                    if(w<15){d=225}
-                   else if (w<25 ){d=375}
-                   else {d=400}               
-                }
-                var outputmsg="Your order has been accepted. Amount to be paid is Rs" + Math.round(d*w*loc)  ;
-                document.getElementById('msg').innerHTML =outputmsg;
-                return false
-            }
-    </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Git Info</title>
+  <meta name="description" content="Get Information about git user">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js"></script>
 </head>
-<body style="background: #CEF6CE">  
-    <h1 style="color:#08088a"> Air Cargo Service</h1>
-    <div class="formBody">
-        <form class ="form" style="border : 2px solid red" onsubmit="return costcalculation();">
-            
-            <div class="form-group">
-            <label>Customer Logistic Account Number</labeL>
-            <input type="text" id="clan" minlength="8" maxlength="='8'" pattern="[A-Z,a-z]{4}_[0-9]{3}" placeholder="Enter the Unique ID" required>
-            </div>
+<body ng-app="myApp"  ng-controller="myCtrl">
+<div class="container">
+  <div class="jumbotron">
+      <input type="text" class="form-control" ng-model="uname" placeholder="Enter Git Username"/><br>
+    <button type="submit" class="btn btn-primary" ng-click="myFun()">Submit</button>
+  </div>
+  <div class="jumbotron" ng-if="isClicked">
+    <table class="table table-bordered">
+      <tr>
+        <td>UserName</td>
+        <td>{{myWelcome.login}}</td>
+      </tr>
 
-            <div class="form-group">
-            <label> Mobile </label>
-            <input type="text" name="Phone Number" pattern="[7-9]{1}[0-9]{9}" 
-            title="Phone number with 7-9 and remaing 9 digit with 0-9" required>
-             </div>
+      <tr>
+        <td>URL</td>
+        <td>{{myWelcome.url}}</td>
+      </tr>
 
-
-             <div class="form-group">
-            <label> Email Id </label>
-            <input type ="email" required></input>
-            </div>
-
-            <div class="form-group">
-            <label> Item to be shipped</label>
-            <input placeholder="item name" required></input>
-            </div>
-
-            <div class="form-group">
-            <label> Item Category </label>
-            <select class="form-control" id="category">
-                    <option>Electrnoics</option>
-                    <option>Attires</option>
-                    <option>Toy</option>
-                    <option>Non Poisnous Item</option>
-            </select>
-            </div>
-
-            <div class="form-group">
-            <label> Shipment Address </label>
-            <textarea required></textarea>
-            </div>
-
-            <div class="form-group">
-            <label>location </label>
-            <select class="form-control" id="loc">
-                    <option value="1.1"> London-1800</option>
-                    <option value="1">Singapore-1400</option>
-                    <option value="1.15">New York-3100</option>
-                    <option value="1">Mexico-3300</option>
-                    <option value="1.2">Tokyo-28000</option>
-            </select>
-            </div>
-
-            <div class="form-group">
-            <label>Weight in Kilogram</label>
-            <input type="number" min='5' max='36' id='kilogramval' required></input>
-            </div>
+      <tr>
+        <td>Avatar</td>
+        <td>
+          <img ng-src="{{myWelcome.avatar_url}}" alt="{{myWelcome.avatar_url}}" style="width: 50px; height: 50px">
+          </td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td>{{myWelcome.location}}</td>
+      </tr>
 
 
-            <div class="form-group">
-            <label> Sevice Type </label>
-            <div class="radio">
-                    <label><input type="radio" name="serviceType" id='type1' value="normal" checked>Normal</label>
-                  </div>
-                  <div class="radio">
-                    <label><input type="radio" name="serviceType" id='type2' value="express">Express</label>
-                  </div>
-                  <div class="radio disabled">
-                    <label><input type="radio" name="serviceType" id='type3' value="platinum">Platinum</label>
-            </div>
-            </div>
+      <tr>
+        <td>Number of Repo</td>
+        <td>{{myWelcome.public_repos}}</td>
+      </tr>
 
-            <button type="submit">Book My Consignmnet</button>
-            <button type="submit" onClick="costcalculation()">clear</button>
-        </form>
-         <div id='msg'></div>
-    </div>
+      <tr>
+        <td>Number of Gist</td>
+        <td>{{myWelcome.public_gists}}</td>
+      </tr>
+
+      <tr>
+        <td>Number of Follower</td>
+        <td>{{myWelcome.followers}}</td>
+      </tr>
+
+      <tr>
+        <td>Number of Following</td>
+        <td>{{myWelcome.following}}</td>
+      </tr>
+
+      <tr>
+        <td>About</td>
+        <td>{{myWelcome.bio}}</td>
+      </tr>
+      <tr>
+        <td>Follower</td>
+        <td>
+          <ol >
+                 <li ng-repeat="x in myfo">{{x.login}}</li>
+        </ol>
+        </td>
+
+      </tr>
+
+      <tr>
+        <td>Following</td>
+        <td>
+          <ol >
+            <li ng-repeat="x in myfol">{{x.login}}</li>
+          </ol>
+        </td>
+
+      </tr>
+
+    </table>
+
+  </div>
+</div>
 </body>
 </html>
-
-
