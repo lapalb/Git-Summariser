@@ -1,4 +1,4 @@
-name: Greetings
+name: Greetings on new PR and issues
 
 on: [pull_request, issues]
 
